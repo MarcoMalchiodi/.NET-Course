@@ -237,3 +237,258 @@ class Car
 
 
 // Outputs Red 1969 Mustang
+
+
+
+
+// Access Modifiers
+
+/*
+ * public >	    The code is accessible for all classes
+ * 
+ * private >	The code is only accessible within the same class
+ * 
+ * protected >	The code is accessible within the same class, or 
+ *              in a class that is inherited from that class. 
+ *           
+ * internal >	The code is only accessible within its own assembly, but not from another assembly. 
+ *
+ */
+
+
+// If you declare a field with a private access modifier, it can only be accessed within the same class:
+class Car
+{
+    private string model = "Mustang";
+
+    static void Main(string[] args)
+    {
+        Car myObj = new Car();
+        Console.WriteLine(myObj.model);
+    }
+}
+// Mustang
+
+
+
+// If you declare a field with a public access modifier, it is accessible for all classes:
+
+class Car
+{
+    public string model = "Mustang";
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Car myObj = new Car();
+        Console.WriteLine(myObj.model);
+    }
+}
+
+
+
+
+// Encapsulation
+// It is used to protect sensitive data from external entities.
+// To achieve this, you must: declare fields/variables as private and provide public get and set methods,
+// through properties, to access and update the value of a private field
+
+// Properties
+// A property is like a combination of a variable and a method, and it has two methods: GET, SET
+
+class Person
+{
+    private string name; // field
+
+    public string Name   // property
+    {
+        get { return name; }   // get method
+        set { name = value; }  // set method
+    }
+}
+
+/*
+The Name property is associated with the name field. 
+It is a good practice to use the same name for both the property and the private field, 
+but with an uppercase first letter.
+
+The get method returns the value of the variable name.
+
+The set method assigns a value to the name variable. 
+The value keyword represents the value we assign to the property.
+*/
+
+
+class Person
+{
+    private string name; // field
+    public string Name   // property
+    {
+        get { return name; }
+        set { name = value; }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Person myObj = new Person();
+        myObj.Name = "Liam";
+        Console.WriteLine(myObj.Name);
+    }
+}
+// Liam
+
+
+
+
+// Automatic Properties (Short Hand)
+class Person
+{
+    public string Name  // property
+    { get; set; }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Person myObj = new Person();
+        myObj.Name = "Liam";
+        Console.WriteLine(myObj.Name);
+    }
+}
+
+
+
+
+// Inheritance
+/*
+In C#, it is possible to inherit fields and methods from one class to another. 
+We group the "inheritance concept" into two categories:
+
+Derived Class (child) - the class that inherits from another class
+Base Class (parent) - the class being inherited from
+To inherit from a class, use the : symbol.
+
+In the example below, the Car class (child) inherits the fields and methods from the Vehicle class (parent):
+*/
+
+class Vehicle  // base class (parent) 
+{
+    public string brand = "Ford";  // Vehicle field
+    public void honk()             // Vehicle method 
+    {
+        Console.WriteLine("Tuut, tuut!");
+    }
+}
+
+class Car : Vehicle  // derived class (child)
+{
+    public string modelName = "Mustang";  // Car field
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create a myCar object
+        Car myCar = new Car();
+
+        // Call the honk() method (From the Vehicle class) on the myCar object
+        myCar.honk();
+
+        // Display the value of the brand field (from the Vehicle class) and the value of the modelName from the Car class
+        Console.WriteLine(myCar.brand + " " + myCar.modelName);
+    }
+}
+
+
+
+
+
+// Polymorphism and Overriding Methods
+/*
+Polymorphism means "many forms", and it occurs when we have many classes that are related to 
+each other by inheritance.
+
+Like we specified in the previous chapter; Inheritance lets us inherit fields and methods from another class. 
+Polymorphism uses those methods to perform different tasks. This allows us to perform a single action in 
+different ways.
+
+For example, think of a base class called Animal that has a method called animalSound(). 
+Derived classes of Animals could be Pigs, Cats, Dogs, Birds - And they also have their own implementation 
+of an animal sound (the pig oinks, and the cat meows, etc.):
+*/
+
+class Animal  // Base class (parent) 
+{
+    public void animalSound()
+    {
+        Console.WriteLine("The animal makes a sound");
+    }
+}
+
+class Pig : Animal  // Derived class (child) 
+{
+    public void animalSound()
+    {
+        Console.WriteLine("The pig says: wee wee");
+    }
+}
+
+class Dog : Animal  // Derived class (child) 
+{
+    public void animalSound()
+    {
+        Console.WriteLine("The dog says: bow wow");
+    }
+}
+
+// Now we can create Pig and Dog objects and call the animalSound() method on both of them:
+
+class Animal  // Base class (parent) 
+{
+    public void animalSound()
+    {
+        Console.WriteLine("The animal makes a sound");
+    }
+}
+
+class Pig : Animal  // Derived class (child) 
+{
+    public void animalSound()
+    {
+        Console.WriteLine("The pig says: wee wee");
+    }
+}
+
+class Dog : Animal  // Derived class (child) 
+{
+    public void animalSound()
+    {
+        Console.WriteLine("The dog says: bow wow");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Animal myAnimal = new Animal();  // Create a Animal object
+        Animal myPig = new Pig();  // Create a Pig object
+        Animal myDog = new Dog();  // Create a Dog object
+
+        myAnimal.animalSound();
+        myPig.animalSound();
+        myDog.animalSound();
+    }
+}
+
+
+// The animal makes a sound
+// The animal makes a sound
+// The animal makes a sound

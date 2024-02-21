@@ -492,3 +492,109 @@ class Program
 // The animal makes a sound
 // The animal makes a sound
 // The animal makes a sound
+
+
+
+
+
+// Abstraction
+/*
+Data abstraction is the process of hiding certain details and showing only essential information to the user.
+Abstraction can be achieved with either abstract classes or interfaces:
+
+Abstract class > is a restricted class that cannot be used to create objects (to access it, it must be 
+inherited from another class).
+
+Abstract method > can only be used in an abstract class, and it does not have a body. The body is provided 
+by the derived class (inherited from).
+
+An abstract class can have both abstract and regular methods.
+*/
+
+abstract class Animal 
+{
+  public abstract void animalSound();
+  public void sleep() 
+  {
+    Console.WriteLine("Zzz");
+  }
+}
+
+// it is not possible to create an object of the Animal class:
+Animal myObj = new Animal(); // Will generate an error 
+
+
+// To access the abstract class, it must be inherited from another class. 
+// Let's convert the Animal class we used in the Polymorphism chapter to an abstract class:
+abstract class Animal
+{
+    // Abstract method (does not have a body)
+    public abstract void animalSound();
+    // Regular method
+    public void sleep()
+    {
+        Console.WriteLine("Zzz");
+    }
+}
+
+// Derived class (inherit from Animal)
+class Pig : Animal
+{
+    public override void animalSound()
+    {
+        // The body of animalSound() is provided here
+        Console.WriteLine("The pig says: wee wee");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Pig myPig = new Pig(); // Create a Pig object
+        myPig.animalSound();  // Call the abstract method
+        myPig.sleep();  // Call the regular method
+    }
+}
+
+
+
+// Interface
+// It is a completely "abstract class", which can only contain abstract methods and properties (with empty bodies):
+interface Animal
+{
+    void animalSound(); // interface method (does not have a body)
+    void run(); // interface method (does not have a body)
+}
+
+
+/*
+To access the interface methods, the interface must be "implemented" (kinda like inherited) by another class. 
+To implement an interface, use the : symbol (just like with inheritance). The body of the interface method 
+is provided by the "implement" class. Note that you do not have to use the override keyword when 
+implementing an interface:
+*/
+// Interface
+interface IAnimal
+{
+    void animalSound(); // interface method (does not have a body)
+}
+
+// Pig "implements" the IAnimal interface
+class Pig : IAnimal
+{
+    public void animalSound()
+    {
+        // The body of animalSound() is provided here
+        Console.WriteLine("The pig says: wee wee");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Pig myPig = new Pig();  // Create a Pig object
+        myPig.animalSound();
+    }
+}

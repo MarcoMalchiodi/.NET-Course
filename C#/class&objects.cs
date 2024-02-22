@@ -598,3 +598,115 @@ class Program
         myPig.animalSound();
     }
 }
+
+
+
+
+
+// Enums
+// An enum is a special "class" that represents a group of constants (unchangeable/read-only variables):
+
+enum Level
+{
+    Low,
+    Medium,
+    High
+}
+// you can access an enum with the dot syntax:
+Level myVar = Level.Medium;
+Console.WriteLine(myVar);
+
+
+// You can also have an enum inside a class:
+class Program
+{
+    enum Level
+    {
+        Low,
+        Medium,
+        High
+    }
+    static void Main(string[] args)
+    {
+        Level myVar = Level.Medium;
+        Console.WriteLine(myVar);
+    }
+}
+// Medium
+
+
+
+// By default, the first item of an enum has the value 0. The second has the value 1, and so on.
+enum Months
+{
+    January,    // 0
+    February,   // 1
+    March,      // 2
+    April = 6,  // 6
+    May,        // 7
+    June,       // 8
+    July        // 9
+}
+
+static void Main(string[] args)
+{
+    int myNum = (int)Months.April;
+    Console.WriteLine(myNum);
+}
+// 3
+
+
+
+
+
+
+// Files
+// The File class from the System.IO namespace, allows us to work with files:
+
+using System.IO;  // include the System.IO namespace
+
+File.SomeFileMethod();  // use the file class with methods
+
+
+/*
+The File class has many useful methods for creating and getting information about files. 
+For example:
+
+AppendText()	Appends text at the end of an existing file
+Copy()	        Copies a file
+Create()	    Creates or overwrites a file
+Delete()	    Deletes a file
+Exists()	    Tests whether the file exists
+ReadAllText()	Reads the contents of a file
+Replace()	    Replaces the contents of a file with the contents of another file
+WriteAllText()	Creates a new file and writes the contents to it. If the file already exists, it will be overwritten.
+
+*/
+
+
+
+// Write To a File and Read It
+
+using System.IO;  // include the System.IO namespace
+
+string writeText = "Hello World!";  // Create a text string
+File.WriteAllText("filename.txt", writeText);  // Create a file and write the content of writeText to it
+
+string readText = File.ReadAllText("filename.txt");  // Read the contents of the file
+Console.WriteLine(readText);  // Output the content
+
+// Hello World!
+
+
+
+// Try and Catch
+// The catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
+
+try
+{
+    //  Block of code to try
+}
+catch (Exception e)
+{
+    //  Block of code to handle errors
+}
